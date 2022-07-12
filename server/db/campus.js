@@ -24,10 +24,6 @@ const Campus = db.define('campus', {
   },
   description: {
     type: TEXT,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
   },
 });
 module.exports = Campus;

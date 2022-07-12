@@ -24,7 +24,13 @@ nav {
   height: 80px;
   padding: 10px;
 }
-
+nav a {
+  text-decoration: none;
+  justify-content: space-between;
+  color: whitesmoke;
+  margin-left: 20px;
+  margin-right: 20px;
+}
 main {
   align-items: center;
   display: flex;
