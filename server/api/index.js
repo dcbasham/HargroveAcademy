@@ -1,7 +1,10 @@
-"use strict";
+'use strict';
+const router = require('express').Router();
+const campusRouter = require('./campuses');
+const studentRouter = require('./students');
 
-const router = require("express").Router();
-
+router.use('/campuses', campusRouter);
+router.use('/students', studentRouter);
 // Your routes go here!
 // NOTE: Any routes that you put here are ALREADY mounted on `/api`
 // You can put all routes in this file HOWEVER,
@@ -20,7 +23,7 @@ const router = require("express").Router();
 // error-handling endware!
 
 router.use((req, res, next) => {
-  const err = new Error("API route not found!");
+  const err = new Error('API route not found!');
   err.status = 404;
   next(err);
 });
