@@ -1,10 +1,11 @@
-import { combineReducers } from 'redux'
-import campusesReducer from './campuses'
-import studentsReducer from './students'
-
+import { combineReducers } from 'redux';
+import campusesReducer from './campuses';
+import studentsReducer from './students';
+import singleCampus from './singleCampus';
 const appReducer = combineReducers({
   campuses: campusesReducer,
-  students: studentsReducer
-})
+  students: studentsReducer,
+  singleCampus,
+});
 
-export default appReducer
+export default appReducer;
