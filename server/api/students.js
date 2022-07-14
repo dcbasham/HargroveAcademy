@@ -24,4 +24,13 @@ studentRouter.get('/:studentId', async (req, res, next) => {
     next(e);
   }
 });
+studentRouter.post('/', async (req, res, next) => {
+  try {
+    const newStudent = await Student.create(req.body);
+    res.send(newStudent);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
 module.exports = studentRouter;

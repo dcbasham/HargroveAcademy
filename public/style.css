@@ -46,11 +46,7 @@ button {
 button:hover {
   background-color: #59a9c2;
 }
-.campusList {
-  display: inline-block;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
+
 .single-view {
   flex-basis: 500px;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
@@ -61,7 +57,12 @@ button:hover {
   display: flex;
   flex-direction: column;
 }
-.addCampus {
+input {
+  padding: 0.3em;
+  margin: 0.5em 0;
+  font-size: 1.5em;
+}
+.addForm {
   border-bottom-left-radius: solid 1px;
   padding: 1rem;
   float: right;
@@ -75,21 +76,55 @@ button:hover {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.addCampus input {
-  padding: 0.3em;
-  margin: 0.5em 0;
-  font-size: 1.5em;
-}
 
-form #campus-form {
-  background-color: #59a9c2;
-}
 ul {
   list-style-type: none;
   padding: 0;
 }
+a {
+  color: darkblue;
+}
 
-li {
-  border-bottom: solid 1px gray;
-  padding: 0.5rem;
+a:focus {
+  color: #59a9c2;
+  text-decoration: none;
+}
+a:active {
+  color: #59a9c2;
+}
+a:visited {
+  text-decoration: none;
+}
+#navLink nav a {
+  text-decoration: none;
+  justify-content: space-between;
+  color: whitesmoke;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+/* #main .List {
+  text-align: left;
+} */
+.campusList {
+  display: inline-block;
+  max-width: 75%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  max-height: fit-content;
+}
+
+ul.studentList {
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 20px;
+}
+#students {
+  width: 80%;
+}
+div.form {
+  width: 20%;
+  position: relative;
+}
+ul li a {
+  width: 80%;
 }

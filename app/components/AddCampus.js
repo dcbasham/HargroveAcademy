@@ -17,6 +17,10 @@ class AddCampus extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.createCampus({ ...this.state });
+    this.setState({
+      name: '',
+      address: '',
+    });
   }
 
   handleChange(evt) {
@@ -30,7 +34,7 @@ class AddCampus extends React.Component {
     const { handleSubmit } = this;
 
     return (
-      <form id="campus-form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input name="name" value={name} onChange={this.handleChange} />
 

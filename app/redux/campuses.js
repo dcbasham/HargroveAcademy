@@ -35,7 +35,6 @@ export default function campusesReducer(state = [], action) {
     case SET_CAMPUSES:
       return action.campuses;
     case ADD_CAMPUS:
-      const { name } = action.campus;
       return [...state, action.campus];
     default:
       return state;
