@@ -23,4 +23,14 @@ campusRouter.get('/:campusId', async (req, res, next) => {
     next(e);
   }
 });
+//POST for /api/campuses
+campusRouter.post('/', async (req, res, next) => {
+  try {
+    const newCampus = await Campus.create(req.body);
+    res.send(newCampus);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = campusRouter;

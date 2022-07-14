@@ -10,7 +10,7 @@ class Campus extends React.Component {
   render() {
     const campus = this.props.singleCampus;
     return (
-      <div>
+      <div className="single-view">
         <h3>Campus : {campus.name} </h3>
         <h4>{campus.address} </h4>
         <img width="200" src={campus.imageUrl} />

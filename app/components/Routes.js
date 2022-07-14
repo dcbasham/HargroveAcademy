@@ -4,6 +4,7 @@ import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
 import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
+import AddCampus from './AddCampus';
 
 const Routes = () => {
   return (
@@ -15,8 +16,10 @@ const Routes = () => {
         </nav>
         <main>
           <Switch>
-            <Route path="/campuses/:campusId" component={SingleCampus} />
+            <Route exact path="/campuses/:campusId" component={SingleCampus} />
+
             <Route exact path="/campuses" component={AllCampuses} />
+
             <Route
               exact
               path="/students/:studentId"

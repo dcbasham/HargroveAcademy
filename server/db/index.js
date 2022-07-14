@@ -13,12 +13,6 @@ const Campus = require('./campus');
 Student.belongsTo(Campus);
 Campus.hasMany(Student);
 
-Campus.getCampusAndStudents = async function (id) {
-  const campus = await Campus.findByPk(id, {
-    include: [{ Model: Student, attributes: 'name' }],
-  });
-  return campus;
-};
 module.exports = {
   // Include your models in this exports object as well!
   db,
