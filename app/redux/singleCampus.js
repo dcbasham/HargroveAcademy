@@ -19,7 +19,6 @@ export const fetchSingleCampus = (id) => async (dispatch) => {
 export default (state = [], action) => {
   switch (action.type) {
     case GOT_CAMPUS:
-      console.log(action.campus);
       return action.campus;
     default:
       return state;

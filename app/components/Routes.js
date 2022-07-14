@@ -15,13 +15,13 @@ const Routes = () => {
         </nav>
         <main>
           <Switch>
+            <Route path="/campuses/:campusId" component={SingleCampus} />
+            <Route exact path="/campuses" component={AllCampuses} />
             <Route
               exact
               path="/students/:studentId"
               component={SingleStudent}
             />
-            <Route exact path="/campuses/:campusId" component={SingleCampus} />
-            <Route exact path="/campuses" component={AllCampuses} />
             <Route exact path="/students" component={AllStudents} />
           </Switch>
         </main>
