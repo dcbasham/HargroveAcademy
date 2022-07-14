@@ -1,15 +1,11 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-
 import { connect } from 'react-redux';
 import { fetchSingleCampus } from '../redux/singleCampus';
 
 class Campus extends React.Component {
   componentDidMount() {
-    console.log('this.props before thunk', this.props);
     const campusId = this.props.match.params.campusId;
     this.props.fetchCampus(campusId);
-    console.log('this.props after thunked 2nd time', this.props);
   }
   render() {
     const campus = this.props.singleCampus;
@@ -18,7 +14,7 @@ class Campus extends React.Component {
         <h3>The campus : {campus.name} </h3>
         <h4>{campus.address} </h4>
         <img width="200" src={campus.imageUrl} />
-        <h5>
+        <p>
           {campus.students ? (
             <ul>
               {' '}
@@ -34,9 +30,9 @@ class Campus extends React.Component {
               })}
             </ul>
           ) : (
-            'No data for students yet'
+            <h3>No student data yet!</h3>
           )}
-        </h5>
+        </p>
       </div>
     );
   }

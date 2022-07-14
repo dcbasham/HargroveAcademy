@@ -29,7 +29,7 @@ const Student = db.define('student', {
   imageUrl: {
     type: STRING,
     defaultValue:
-      'https://media.istockphoto.com/photos/african-student-sitting-in-classroom-picture-id1351445530?b=1&k=20&m=1351445530&s=170667a&w=0&h=9Lmy0oy3tqoFgvuIPhEKPhbNQrLR12Ym518Zjs-KpF4=',
+      'https://cdn-ejfid.nitrocdn.com/HahWXuLfKZbQhJjlzjiUHtqlxVqcJYyP/assets/static/optimized/rev-0cc4069/wp-content/uploads/2020/12/topic-faculty-active-engaged-students-1.png',
   },
   gpa: {
     type: DECIMAL(2, 1),

@@ -38,7 +38,6 @@ const mapState = ({ campuses }) => {
 const mapDispatch = (dispatch) => {
   return {
     getCampuses: () => dispatch(fetchCampuses()),
-    fetchSingleCampus: (id) => dispatch(fetchSingleCampus(id)),
   };
 };
 

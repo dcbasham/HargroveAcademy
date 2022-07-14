@@ -27,18 +27,21 @@ const seed = async () => {
       lastName: 'Smith',
       email: 'JaneSmith@yahoo.com',
       campusId: Marfabulb.id,
+      gpa: 3.2,
     });
     const Will = await Student.create({
       firstName: 'Will',
       lastName: 'Jones',
       email: 'BillyBoy300@gmail.com',
       campusId: TaxidermyArt.id,
+      gpa: 2.7,
     });
     const George = await Student.create({
       firstName: 'George',
       lastName: 'McCallan',
       email: 'brewster45@gmail.com',
       campusId: Marfabulb.id,
+      gpa: 4.0,
     });
 
     // seed your database here!
