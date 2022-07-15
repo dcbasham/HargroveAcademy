@@ -8,10 +8,28 @@ import SingleStudent from './SingleStudent';
 const Routes = () => {
   return (
     <Router>
-      <div>
-        <nav id="navLink">
-          <Link to="/campuses">Campuses</Link> |
-          <Link to="/students"> Students </Link> | <Link to="/home">Home </Link>
+      <div className="container-fluid">
+        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to="/campuses" className="nav-link">
+                Campuses
+              </Link>
+            </li>{' '}
+            |{' '}
+            <li className="nav-item">
+              <Link to="/students" className="nav-link">
+                {' '}
+                Students{' '}
+              </Link>
+            </li>{' '}
+            |{' '}
+            <li className="nav-item">
+              <Link to="/home" className="nav-link light">
+                Home{' '}
+              </Link>
+            </li>
+          </ul>
         </nav>
         <main>
           <Switch>

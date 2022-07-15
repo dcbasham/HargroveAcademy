@@ -2,7 +2,8 @@ import React from 'react';
 import { createStudent } from '../redux/students';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 class AddCampus extends React.Component {
   constructor() {
     super();
@@ -36,20 +37,35 @@ class AddCampus extends React.Component {
     const { handleSubmit } = this;
 
     return (
-      <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="firstName">First Name</label>
-        <input
-          name="firstName"
-          value={firstName}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="lastName">Last Name</label>
-        <input name="lastName" value={lastName} onChange={this.handleChange} />
-        <label htmlFor="email">email:</label>
-        <input name="email" value={email} onChange={this.handleChange} />
-
-        <button type="submit">Add Student</button>
-      </form>
+      <Form className="form" onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label htmlFor="firstName">First Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="lastName">Last Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={this.handleChange}
+          />
+          <Form.Label htmlFor="email">email:</Form.Label>
+          <Form.Control
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Button variant="outline-success" type="submit">
+          Add Student
+        </Button>{' '}
+      </Form>
     );
   }
 }

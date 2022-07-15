@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import { fetchCampuses } from '../redux/campuses';
 import AddCampus from './AddCampus';
 import { Link } from 'react-router-dom';
-export const linkStyle = {
-  textDecoration: 'none',
-};
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Image from 'react-bootstrap/Image';
 // Notice that we're exporting the AllCampuses component twice. The named export
 // (below) is not connected to Redux, while the default export (at the very
 // bottom) is connected to Redux. Our tests should cover _both_ cases.
@@ -15,22 +18,38 @@ export class AllCampuses extends React.Component {
   }
   render() {
     return (
-      <div className="campusList">
-        <div className="addForm">
-          Add a campus here: <AddCampus />
-        </div>
-        <ul>
-          {this.props.campuses.map((campus) => (
-            <li key={campus.id}>
-              <Link style={linkStyle} to={`campuses/${campus.id}`}>
-                <h3>{campus.name}</h3>
-              </Link>
-              <p>{campus.description}</p>
-              <img width="200" src={campus.imageUrl} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Container id="campuses">
+        <Card>
+          <Card.Header>
+            <Card.Img
+              src="https://cdn.britannica.com/02/146902-050-EF174421/gardens-Maymyo-Myanmar.jpg/"
+              fluid="true"
+              width={200}
+              height={200}
+            />
+          </Card.Header>
+
+          <Card.Body>
+            <CardGroup>
+              {this.props.campuses.map((campus) => (
+                <Card key={campus.id}>
+                  <Card.Body>
+                    <Card.Img variant="top" src={campus.imageUrl} />
+                    <Link to={`campuses/${campus.id}`}>
+                      <Card.Title>{campus.name}</Card.Title>
+                    </Link>
+                    <Card.Text>{campus.description}</Card.Text>
+                  </Card.Body>
+                </Card>
+              ))}
+            </CardGroup>
+          </Card.Body>
+
+          <Card.Footer>
+            Add a campus here: <AddCampus />
+          </Card.Footer>
+        </Card>
+      </Container>
     );
   }
 }

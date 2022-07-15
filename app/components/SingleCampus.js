@@ -1,7 +1,11 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { connect } from 'react-redux';
 import { fetchSingleCampus } from '../redux/singleCampus';
 import { Link } from 'react-router-dom';
+
 class Campus extends React.Component {
   componentDidMount() {
     const campusId = this.props.match.params.campusId;
@@ -10,7 +14,7 @@ class Campus extends React.Component {
   render() {
     const campus = this.props.singleCampus;
     return (
-      <div className="single-view">
+      <div className="card">
         <h3>Campus : {campus.name} </h3>
         <h4>{campus.address} </h4>
         <img width="200" src={campus.imageUrl} />
@@ -23,9 +27,7 @@ class Campus extends React.Component {
                 <li key={student.id}>
                   <Link to={`/students/${student.id}`}>
                     {' '}
-                    <h3>
-                      {student.firstName} {student.lastName}
-                    </h3>{' '}
+                    {student.firstName} {student.lastName}
                   </Link>
                 </li>
               );

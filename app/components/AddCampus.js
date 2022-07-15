@@ -2,6 +2,8 @@ import React from 'react';
 import { createCampus } from '../redux/campuses';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 class AddCampus extends React.Component {
   constructor() {
@@ -34,15 +36,29 @@ class AddCampus extends React.Component {
     const { handleSubmit } = this;
 
     return (
-      <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input name="name" value={name} onChange={this.handleChange} />
-
-        <label htmlFor="address">Address:</label>
-        <input name="address" value={address} onChange={this.handleChange} />
-
-        <button type="submit">Submit</button>
-      </form>
+      <Form className="form" onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label htmlFor="name">Name:</Form.Label>
+          <Form.Control
+            type="text"
+            name="name"
+            value={name}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="address">Address:</Form.Label>
+          <Form.Control
+            type="text"
+            name="address"
+            value={address}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Button variant="outline-success" type="submit">
+          Submit
+        </Button>
+      </Form>
     );
   }
 }

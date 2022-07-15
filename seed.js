@@ -8,19 +8,25 @@ const seed = async () => {
       name: 'Allbright',
       address: '124 Cornwall Ave.',
       description:
-        "I'm baby ethical wayfarers vinyl poutine air plant neutra shoreditch direct trade deep v iPhone offal",
+        "It's a place where students are challenged to make good decisions and lead in positive ways in their school.",
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzBtoiHFrDsozalD-Z5AK13BSX8fHEtY-CWQ&usqp=CAU',
     });
     const Marfabulb = await Campus.create({
       name: 'Marfabulb',
       address: '345 Sesame Street',
       description:
-        'Cliche scenester vice chillwave keytar, waistcoat locavore whatever',
+        'a positive place where students can go to have fun with friends, talk about relevant issues and be heard without judgment.',
+      imageUrl:
+        'https://tech.cornell.edu/wp-content/uploads/2018/06/dedication_press_release_feature.jpg ',
     });
     const TaxidermyArt = await Campus.create({
       name: 'TaxidermyArt',
       address: '987 Hexagon St.',
       description:
-        'Unicorn hell of swag street art taxidermy gluten-free. Raw denim irony selfies bitters aesthetic vinyl, hot chicken hashtag ',
+        'Set in 3 acres of beautiful gardens, the grounds  are safe and idyllic. TA offers perfect surroundings for perfect learning.',
+      imageUrl:
+        'https://www.designbuild-network.com/wp-content/uploads/sites/26/2017/10/1l-image-61.jpg',
     });
     const Jane = await Student.create({
       firstName: 'Jane',
