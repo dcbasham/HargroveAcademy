@@ -32,5 +32,15 @@ campusRouter.post('/', async (req, res, next) => {
     next(err);
   }
 });
+campusRouter.delete('/:id', async (req, res, next) => {
+  try {
+    const targetCampus = await Campus.findByPk(req.params.id);
+    await targetCampus.destroy();
+    res.send(targetCampus);
+  } catch (err) {
+    console.log(err.message);
+    next(err);
+  }
+});
 
 module.exports = campusRouter;

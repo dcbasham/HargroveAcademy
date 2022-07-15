@@ -11,6 +11,7 @@ class AddCampus extends React.Component {
     this.state = {
       name: '',
       address: '',
+      description: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,6 +23,7 @@ class AddCampus extends React.Component {
     this.setState({
       name: '',
       address: '',
+      description: '',
     });
   }
 
@@ -32,7 +34,7 @@ class AddCampus extends React.Component {
   }
 
   render() {
-    const { name, address } = this.state;
+    const { name, address, description } = this.state;
     const { handleSubmit } = this;
 
     return (
@@ -52,6 +54,16 @@ class AddCampus extends React.Component {
             type="text"
             name="address"
             value={address}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="description">description:</Form.Label>
+          <Form.Control
+            placeholder="optional"
+            type="text"
+            name="description"
+            value={description}
             onChange={this.handleChange}
           />
         </Form.Group>

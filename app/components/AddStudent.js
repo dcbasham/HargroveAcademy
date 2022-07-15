@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-class AddCampus extends React.Component {
+class AddStudent extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -37,7 +37,7 @@ class AddCampus extends React.Component {
     const { handleSubmit } = this;
 
     return (
-      <Form className="form" onSubmit={handleSubmit}>
+      <Form className="form text-white" onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label htmlFor="firstName">First Name</Form.Label>
           <Form.Control
@@ -62,7 +62,7 @@ class AddCampus extends React.Component {
             onChange={this.handleChange}
           />
         </Form.Group>
-        <Button variant="outline-success" type="submit">
+        <Button variant="success" type="submit">
           Add Student
         </Button>{' '}
       </Form>
@@ -73,4 +73,4 @@ const mapDispatchToProps = (dispatch, { history }) => ({
   createStudent: (student) => dispatch(createStudent(student, history)),
 });
 
-export default connect(null, mapDispatchToProps)(AddCampus);
+export default connect(null, mapDispatchToProps)(AddStudent);
