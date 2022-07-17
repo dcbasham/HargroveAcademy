@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStudent } from '../redux/students';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 class AddStudent extends React.Component {
@@ -35,34 +34,35 @@ class AddStudent extends React.Component {
   render() {
     const { firstName, lastName, email } = this.state;
     const { handleSubmit } = this;
-
+    const { Group, Label, Control } = Form;
+    const labelStyle = { marginTop: '0.5rem' };
     return (
-      <Form className="form text-white" onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label htmlFor="firstName">First Name</Form.Label>
-          <Form.Control
+      <Form onSubmit={handleSubmit}>
+        <Group>
+          <Label htmlFor="firstName">First Name</Label>
+          <Control
             type="text"
             name="firstName"
             value={firstName}
             onChange={this.handleChange}
           />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label htmlFor="lastName">Last Name</Form.Label>
-          <Form.Control
+        </Group>
+        <Group>
+          <Label style={labelStyle} htmlFor="lastName">
+            Last Name
+          </Label>
+          <Control
             type="text"
             name="lastName"
             value={lastName}
             onChange={this.handleChange}
           />
-          <Form.Label htmlFor="email">email:</Form.Label>
-          <Form.Control
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          />
-        </Form.Group>
-        <Button variant="success" type="submit">
+          <Label style={labelStyle} htmlFor="email">
+            email:
+          </Label>
+          <Control name="email" value={email} onChange={this.handleChange} />
+        </Group>
+        <Button style={{ marginTop: '0.5rem' }} variant="success" type="submit">
           Add Student
         </Button>{' '}
       </Form>

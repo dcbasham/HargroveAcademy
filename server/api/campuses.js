@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 const campusRouter = require('express').Router();
 const { Student } = require('../db');
 const Campus = require('../db/campus');
@@ -13,6 +14,7 @@ campusRouter.get('/', async (req, res, next) => {
 
 campusRouter.get('/:campusId', async (req, res, next) => {
   try {
+    // eslint-disable-next-line radix
     const id = parseInt(req.params.campusId);
     const campusAndStudents = await Campus.findByPk(id, {
       include: { model: Student },
@@ -39,6 +41,20 @@ campusRouter.delete('/:id', async (req, res, next) => {
     res.send(targetCampus);
   } catch (err) {
     console.log(err.message);
+    next(err);
+  }
+});
+campusRouter.put('/:id', async (req, res, next) => {
+  try {
+    const id = parseInt(req.params.id);
+    const target = await Campus.findByPk(id);
+    if (!target) {
+      return res.status(404).json({ error: 'No such campus exists' });
+    } else {
+      const updatedTarget = target.update(req.body);
+      res.json(updatedTarget);
+    }
+  } catch (err) {
     next(err);
   }
 });

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSingleStudent } from '../redux/singleStudent';
 import { Link } from 'react-router-dom';
+import { Card, CardHeader, CardImg, Button, Tab } from 'react-bootstrap';
+
 class Student extends React.Component {
   componentDidMount() {
     const studentId = this.props.match.params.studentId;
@@ -12,24 +14,37 @@ class Student extends React.Component {
     console.log('student', student);
 
     return (
-      <div>
-        <h3>Student: {' ' + student.firstName + ' ' + student.lastName} </h3>
-        <h5>
+      <Card>
+        <Card.Header>Student</Card.Header>
+        <Card.Title>
+          {' ' + student.firstName + ' ' + student.lastName}{' '}
+        </Card.Title>
+        <Card.Subtitle style={{ color: '#28464B' }}>
           {student.email} | GPA: {student.gpa}
-        </h5>
-        <img width="200" src={student.imageUrl} />
+        </Card.Subtitle>
+
+        <Card.Img variant="bottom" src={student.imageUrl} />
         {student.campusId ? (
-          <Link to={`/campuses/${student.campusId}`}>
-            <h5>
+          <Card.Footer>
+            {' '}
+            Campus:{' '}
+            <Link
+              style={{
+                textDecoration: 'none',
+                color: 'navy',
+                padding: '0.25rem',
+                fontStyle: 'italic',
+              }}
+              to={`/campuses/${student.campusId}`}
+            >
               {' '}
-              Campus:
               {student.campus.name}
-            </h5>
-          </Link>
+            </Link>
+          </Card.Footer>
         ) : (
-          <h3> No data for student campus yet</h3>
+          <Card.Footer> No data for student campus yet</Card.Footer>
         )}
-      </div>
+      </Card>
     );
   }
 }

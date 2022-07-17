@@ -1,42 +1,78 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
-import ListGroup from 'react-bootstrap/ListGroup';
+
 import { connect } from 'react-redux';
 import { fetchSingleCampus } from '../redux/singleCampus';
 import { Link } from 'react-router-dom';
+import UpdateCampus from './UpdateCampus';
+import { ListGroup, Card, Container, Row, Col } from 'react-bootstrap';
+const { Item } = ListGroup;
+const { Header, Subtitle, Body, Title } = Card;
 
 class Campus extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: 0,
+    };
+  }
   componentDidMount() {
     const campusId = this.props.match.params.campusId;
     this.props.fetchCampus(campusId);
+    this.setState({
+      id: campusId,
+    });
   }
   render() {
+    const { fontStyle, spacing, linkStyle } = this.props.customStyles;
+
     const campus = this.props.singleCampus;
     return (
-      <div className="card">
-        <h3>Campus : {campus.name} </h3>
-        <h4>{campus.address} </h4>
-        <img width="200" src={campus.imageUrl} />
-        {campus.students ? (
-          <ul>
-            {' '}
-            Our Students:
-            {campus.students.map((student) => {
-              return (
-                <li key={student.id}>
-                  <Link to={`/students/${student.id}`}>
+      <Container fluid>
+        <Row lg={2} sm={2}>
+          <Col>
+            <Card>
+              <Header>Campus</Header>
+              <Title style={fontStyle}>{campus.name} </Title>
+              <Subtitle style={spacing}>{campus.address}</Subtitle>
+
+              <Card.Img
+                style={spacing}
+                className="w-50"
+                src={campus.imageUrl}
+              />
+              <Body style={spacing}>
+                {campus.students ? (
+                  <ListGroup>
                     {' '}
-                    {student.firstName} {student.lastName}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <h3>No student data yet!</h3>
-        )}
-      </div>
+                    <p>Students:</p>
+                    {campus.students.map((student) => {
+                      return (
+                        <Item key={student.id}>
+                          <Link
+                            style={linkStyle}
+                            to={`/students/${student.id}`}
+                          >
+                            {' '}
+                            {student.firstName} {student.lastName}
+                          </Link>
+                        </Item>
+                      );
+                    })}
+                  </ListGroup>
+                ) : (
+                  <span>No student data yet!</span>
+                )}
+              </Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card>
+              <Header>Update Campus</Header>
+              <UpdateCampus id={this.state.id} {...this.props} />
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
@@ -45,6 +81,7 @@ const mapState = ({ singleCampus }) => {
     singleCampus,
   };
 };
+
 const mapDispatch = (dispatch) => ({
   fetchCampus: (id) => dispatch(fetchSingleCampus(id)),
 });

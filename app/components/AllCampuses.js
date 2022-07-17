@@ -2,21 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCampuses, deleteCampus } from '../redux/campuses';
 import AddCampus from './AddCampus';
+import { Card, Col, Row, Form, Container, CloseButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
-import Button from 'react-bootstrap/Button';
 
 // Notice that we're exporting the AllCampuses component twice. The named export
 // (below) is not connected to Redux, while the default export (at the very
 // bottom) is connected to Redux. Our tests should cover _both_ cases.
 export class AllCampuses extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleDelete = this.handleDelete.bind(this);
+    this.customStyles = { ...this.props.customStyles };
   }
 
   componentDidMount() {
@@ -27,55 +23,37 @@ export class AllCampuses extends React.Component {
   }
 
   render() {
+    const { linkStyle, spacing, labelStyle, fontStyle } = this.customStyles;
     return (
-      <Container id="campuses">
-        <Image
-          fluid
-          src="https://cdn.britannica.com/02/146902-050-EF174421/gardens-Maymyo-Myanmar.jpg"
-        />
-        <Card variant="secondary">
-          <Card.Header>
-            <Card.Title>Campuses</Card.Title>
-
-            {/* width={200}
-              height={200}
-            /> */}
-          </Card.Header>
-
-          <Card.Body>
-            <CardGroup>
-              {this.props.campuses.map((campus) => (
-                <Card key={campus.id}>
+      <Container fluid id="campuses">
+        <Row style={spacing} lg="6" sm="3" className="g-md-1">
+          {this.props.campuses.map((campus) => (
+            <Col key={campus.id}>
+              <Card>
+                <Card.Body>
                   <Form onSubmit={(ev) => ev.preventDefault()}>
-                    <Button
-                      variant="outline-danger"
-                      size="sm"
-                      type="submit"
-                      style={{ bottom: '0', marg 0 }}
+                    <CloseButton
+                      className="text-sm-right"
                       onClick={() => {
                         this.handleDelete(campus.id);
                       }}
-                    >
-                      Delete
-                    </Button>
+                    />
                   </Form>
-                  <Card.Body>
-                    <Card.Img variant="top" src={campus.imageUrl} />
-                    <Link to={`campuses/${campus.id}`}>
-                      {' '}
-                      <Card.Title>{campus.name}</Card.Title>
-                    </Link>
-                    <Card.Text>{campus.description}</Card.Text>
-                  </Card.Body>
-                </Card>
-              ))}
-            </CardGroup>
-          </Card.Body>
-
-          <Card.Footer>
-            Add a campus here: <AddCampus />
-          </Card.Footer>
-        </Card>
+                  <Card.Img variant="top" src={campus.imageUrl} />
+                  <Link to={`campuses/${campus.id}`}>
+                    <Card.Title style={linkStyle}>{campus.name}</Card.Title>
+                  </Link>
+                  <Card.Text>{campus.description}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+        <Row>
+          <Col>
+            Add a campus here: <AddCampus labelStyle={labelStyle} />
+          </Col>
+        </Row>
       </Container>
     );
   }

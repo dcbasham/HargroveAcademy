@@ -33,7 +33,7 @@ export const createCampus = (campus, history) => {
     history.push('/');
   };
 };
-export const deleteCampus = (id, history) => {
+export const deleteCampus = (id) => {
   return async (dispatch) => {
     const { data: campus } = await axios.delete(`/api/campuses/${id}`);
     console.log('returned from axios.delete', campus);

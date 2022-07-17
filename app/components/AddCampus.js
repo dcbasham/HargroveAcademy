@@ -38,9 +38,15 @@ class AddCampus extends React.Component {
     const { handleSubmit } = this;
 
     return (
-      <Form className="form" onSubmit={handleSubmit}>
+      <Form
+        className="w-50 bg-dark text-white"
+        style={{ padding: '0.5rem' }}
+        onSubmit={handleSubmit}
+      >
         <Form.Group>
-          <Form.Label htmlFor="name">Name:</Form.Label>
+          <Form.Label style={this.props.labelStyle} htmlFor="name">
+            Name:
+          </Form.Label>
           <Form.Control
             type="text"
             name="name"
@@ -49,7 +55,9 @@ class AddCampus extends React.Component {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="address">Address:</Form.Label>
+          <Form.Label style={this.props.labelStyle} htmlFor="address">
+            Address:
+          </Form.Label>
           <Form.Control
             type="text"
             name="address"
@@ -58,7 +66,9 @@ class AddCampus extends React.Component {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="description">description:</Form.Label>
+          <Form.Label style={this.props.labelStyle} htmlFor="description">
+            description:
+          </Form.Label>
           <Form.Control
             placeholder="optional"
             type="text"
@@ -67,7 +77,11 @@ class AddCampus extends React.Component {
             onChange={this.handleChange}
           />
         </Form.Group>
-        <Button variant="outline-success" type="submit">
+        <Button
+          style={this.props.labelStyle}
+          variant="outline-success"
+          type="submit"
+        >
           Submit
         </Button>
       </Form>
