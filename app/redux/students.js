@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const ADD_STUDENT = 'ADD_STUDENT';
 const SET_STUDENTS = 'SET_STUDENTS';
+const DELETE_STUDENT = 'DELETE_STUDENT';
 /*action creators*/
 export const setStudents = (students) => ({
   type: SET_STUDENTS,
@@ -9,6 +10,10 @@ export const setStudents = (students) => ({
 });
 const addStudent = (student) => ({
   type: ADD_STUDENT,
+  student,
+});
+const removedStudent = (student) => ({
+  type: DELETE_STUDENT,
   student,
 });
 /*thunks*/
@@ -27,6 +32,15 @@ export const createStudent = (student, history) => {
     history.push('/');
   };
 };
+export const deleteStudent = (id) => async (dispatch) => {
+  try {
+    const { data: deletedStudent } = await axios.delete(`/api/students/${id}`);
+    dispatch(removedStudent(deletedStudent));
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
 // Take a look at app/redux/index.js to see where this reducer is
 // added to the Redux store with combineReducers
 export default function studentsReducer(state = [], action) {
@@ -35,6 +49,8 @@ export default function studentsReducer(state = [], action) {
       return action.students;
     case ADD_STUDENT:
       return [...state, action.student];
+    case DELETE_STUDENT:
+      return state.filter((student) => student.id !== action.student.id);
     default:
       return state;
   }

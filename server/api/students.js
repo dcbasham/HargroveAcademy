@@ -33,4 +33,29 @@ studentRouter.post('/', async (req, res, next) => {
     next(e);
   }
 });
+studentRouter.delete('/:id', async (req, res, next) => {
+  try {
+    const studentTarget = await Student.findByPk(req.params.id);
+    await studentTarget.destroy();
+    res.json(studentTarget);
+  } catch (err) {
+    console.log(err.message);
+    next(err);
+  }
+});
+studentRouter.put('/:id', async (req, res, next) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    const targetStudent = await Student.findByPk(id);
+    if (!targetStudent) {
+      res.status(404).send('No such student found');
+    } else {
+      await targetStudent.update(req.body);
+      res.json(targetStudent);
+    }
+  } catch (err) {
+    console.log(err.message);
+    next(err);
+  }
+});
 module.exports = studentRouter;

@@ -4,6 +4,7 @@ import { fetchCampuses, deleteCampus } from '../redux/campuses';
 import AddCampus from './AddCampus';
 import { Card, Col, Row, Form, Container, CloseButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { customStyles } from './Routes';
 
 // Notice that we're exporting the AllCampuses component twice. The named export
 // (below) is not connected to Redux, while the default export (at the very
@@ -12,7 +13,6 @@ export class AllCampuses extends React.Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
-    this.customStyles = { ...this.props.customStyles };
   }
 
   componentDidMount() {
@@ -23,7 +23,7 @@ export class AllCampuses extends React.Component {
   }
 
   render() {
-    const { linkStyle, spacing, labelStyle, fontStyle } = this.customStyles;
+    const { linkStyle, spacing, labelStyle, fontStyle } = customStyles;
     return (
       <Container fluid id="campuses">
         <Row style={spacing} lg="6" sm="3" className="g-md-1">

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { customStyles } from './Routes';
 import { connect } from 'react-redux';
 import { fetchSingleCampus } from '../redux/singleCampus';
 import { Link } from 'react-router-dom';
@@ -23,7 +23,7 @@ class Campus extends React.Component {
     });
   }
   render() {
-    const { fontStyle, spacing, linkStyle } = this.props.customStyles;
+    const { fontStyle, spacing, linkStyle } = customStyles;
 
     const campus = this.props.singleCampus;
     return (
@@ -68,7 +68,7 @@ class Campus extends React.Component {
           <Col>
             <Card>
               <Header>Update Campus</Header>
-              <UpdateCampus id={this.state.id} {...this.props} />
+              <UpdateCampus id={this.state.id} />
             </Card>
           </Col>
         </Row>

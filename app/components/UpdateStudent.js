@@ -1,17 +1,17 @@
 import React from 'react';
 import { customStyles } from './Routes';
-import { updateCampus } from '../redux/singleCampus';
+import { updateStudent } from '../redux/singleStudent';
 import { connect } from 'react-redux';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FormControl } from 'react-bootstrap';
 
-class UpdateCampus extends React.Component {
+class UpdateStudent extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',
-      address: '',
-      description: '',
+      firstName: '',
+      lastName: '',
+      email: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -19,7 +19,7 @@ class UpdateCampus extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.updateCampus(this.props.id, { ...this.state });
+    this.props.updateStudent(this.props.id, { ...this.state });
   }
   handleChange(evt) {
     this.setState({
@@ -27,43 +27,42 @@ class UpdateCampus extends React.Component {
     });
   }
   render() {
-    const { labelStyle } = customStyles;
+    const { labelStyle, spacing } = customStyles;
 
     const { Group, Label, Control } = Form;
-    const { name, address, description } = this.state;
+    const { firstName, lastName, email } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form style={spacing} onSubmit={this.handleSubmit}>
         <Group>
-          <Label style={labelStyle} htmlFor="name">
-            Name:
+          <Label style={labelStyle} htmlFor="firstName">
+            First Name:
           </Label>
           <Control
             type="text"
-            name="name"
-            value={name}
+            name="firstName"
+            value={firstName}
             onChange={this.handleChange}
           />
         </Group>
         <Group>
-          <Label style={labelStyle} htmlFor="address">
-            Address:
+          <Label style={labelStyle} htmlFor="lastName">
+            Last Name:
           </Label>
           <Control
             type="text"
-            name="address"
-            value={address}
+            name="lastName"
+            value={lastName}
             onChange={this.handleChange}
           />
         </Group>
         <Group>
-          <Label style={labelStyle} htmlFor="description">
-            description:
+          <Label style={labelStyle} htmlFor="email">
+            email :
           </Label>
-          <Control
-            placeholder="optional"
+          <FormControl
             type="text"
-            name="description"
-            value={description}
+            name="email"
+            value={email}
             onChange={this.handleChange}
           />
         </Group>
@@ -74,11 +73,11 @@ class UpdateCampus extends React.Component {
     );
   }
 }
-// const mapState = ({ singleCampus }) => ({
-//   singleCampus,
-// });
+const mapState = ({ singleStudent }) => ({
+  singleStudent,
+});
 const mapDispatch = (dispatch) => ({
-  updateCampus: (id, state) => dispatch(updateCampus(id, state)),
+  updateStudent: (id, state) => dispatch(updateStudent(id, state)),
 });
 
-export default connect(null, mapDispatch)(UpdateCampus);
+export default connect(mapState, mapDispatch)(UpdateStudent);

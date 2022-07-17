@@ -2,49 +2,75 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSingleStudent } from '../redux/singleStudent';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardImg, Button, Tab } from 'react-bootstrap';
-
+import { Card, Container, Row, Col } from 'react-bootstrap';
+import { customStyles } from './Routes';
+import UpdateStudent from './UpdateStudent';
 class Student extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      id: 0,
+    };
+  }
   componentDidMount() {
     const studentId = this.props.match.params.studentId;
     this.props.fetchStudent(studentId);
+    this.setState({
+      id: studentId,
+    });
   }
   render() {
+    const { Title, Header, Subtitle, Footer, Img } = Card;
+    const { linkStyle, fontStyle, spacing } = customStyles;
     const student = this.props.singleStudent;
     console.log('student', student);
 
     return (
-      <Card>
-        <Card.Header>Student</Card.Header>
-        <Card.Title>
-          {' ' + student.firstName + ' ' + student.lastName}{' '}
-        </Card.Title>
-        <Card.Subtitle style={{ color: '#28464B' }}>
-          {student.email} | GPA: {student.gpa}
-        </Card.Subtitle>
+      <Container fluid style={spacing}>
+        <Row lg={2} sm={2}>
+          <Col>
+            <Card>
+              <Header>Student</Header>
+              <Title style={fontStyle}>
+                {' ' + student.firstName + ' ' + student.lastName}{' '}
+              </Title>
+              <Subtitle style={fontStyle}>
+                {student.email} | GPA: {student.gpa}
+              </Subtitle>
 
-        <Card.Img variant="bottom" src={student.imageUrl} />
-        {student.campusId ? (
-          <Card.Footer>
-            {' '}
-            Campus:{' '}
-            <Link
-              style={{
-                textDecoration: 'none',
-                color: 'navy',
-                padding: '0.25rem',
-                fontStyle: 'italic',
-              }}
-              to={`/campuses/${student.campusId}`}
-            >
-              {' '}
-              {student.campus.name}
-            </Link>
-          </Card.Footer>
-        ) : (
-          <Card.Footer> No data for student campus yet</Card.Footer>
-        )}
-      </Card>
+              <Img
+                variant="bottom"
+                src={student.imageUrl}
+                className="text-center"
+                style={{
+                  width: '200px',
+                  marginLeft: '0.5rem',
+                  marginBottom: '0.5rem',
+                }}
+              />
+              {student.campusId ? (
+                <Footer>
+                  {' '}
+                  Campus:{' '}
+                  <Link style={linkStyle} to={`/campuses/${student.campusId}`}>
+                    {' '}
+                    {student.campus.name}
+                  </Link>
+                </Footer>
+              ) : (
+                <Footer> No data for student campus yet</Footer>
+              )}
+            </Card>
+          </Col>
+
+          <Col>
+            <Card>
+              <Header> Update Student</Header>
+              <UpdateStudent id={this.state.id} />
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
