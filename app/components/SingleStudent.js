@@ -24,7 +24,6 @@ class Student extends React.Component {
     const { Title, Header, Subtitle, Footer, Img } = Card;
     const { linkStyle, fontStyle, spacing } = customStyles;
     const student = this.props.student;
-    console.log('student', student);
 
     return (
       <Container fluid style={spacing}>
