@@ -43,9 +43,9 @@ export const deleteCampus = (id) => {
     // history.push('/');
   };
 };
-export const updateCampus = (campus) => async (dispatch) => {
+export const updateCampus = (id, campus) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`/api/campuses/${campus.id}`, campus);
+    const { data } = await axios.put(`/api/campuses/${id}`, campus);
     console.log('data: campus form axios.put', campus);
     dispatch(_updateCampus(data));
   } catch (err) {
@@ -64,10 +64,9 @@ export default function campusesReducer(state = [], action) {
     case DELETE_CAMPUS:
       return state.filter((campus) => campus.id !== action.campus.id);
     case UPDATE_CAMPUS:
-      // eslint-disable-next-line no-confusing-arrow
-      return state.map((campus) =>
-        campus.id === action.campus.id ? action.campus : campus
-      );
+      return state.map((campus) => {
+        return campus.id === action.campus.id ? action.campus : campus;
+      });
 
     default:
       return state;

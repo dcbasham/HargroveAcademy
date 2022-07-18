@@ -3,6 +3,7 @@ import { customStyles } from '../_customStyle';
 import { updateCampus } from '../redux/campuses';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
+import { fetchSingleCampus } from '../redux/singleCampus';
 
 class UpdateCampus extends React.Component {
   constructor(props) {
@@ -16,10 +17,15 @@ class UpdateCampus extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.state) {
+      console.log('prevProps vs this.state', prevProps, this.state);
+      this.props.fetchCampus(this.props.id);
+    }
+  }
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.updateCampus(this.props.campus, { ...this.state });
+    this.props.updateCampus(this.props.id, { ...this.state });
     this.setState({
       name: '',
       address: '',
@@ -28,23 +34,15 @@ class UpdateCampus extends React.Component {
   }
 
   handleChange(evt) {
-    console.log('evt.target.name', evt.target.name);
-    console.log('evt.target.value,', evt.target.value);
     this.setState({
       [evt.target.name]: evt.target.value,
     });
   }
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.id !== this.props.campus.id) {
-  //     this.setState({
-  //       name: this.props.campus.name,
-  //       address: this.props.campus.address,
-  //     });
-  //   }
+
   // }
   render() {
     const { labelStyle } = customStyles;
-    const { history } = this.props.history;
+
     const { Group, Label, Control } = Form;
     const { name, address, description } = this.state;
     return (
@@ -95,8 +93,9 @@ class UpdateCampus extends React.Component {
 const mapState = ({ campus }) => ({
   campus,
 });
-const mapDispatch = (dispatch, { history }) => ({
-  updateCampus: (campus) => dispatch(updateCampus(campus, history)),
+const mapDispatch = (dispatch) => ({
+  updateCampus: (id, state) => dispatch(updateCampus(id, state)),
+  fetchCampus: (id) => dispatch(fetchSingleCampus(id)),
 });
 
 export default connect(mapState, mapDispatch)(UpdateCampus);

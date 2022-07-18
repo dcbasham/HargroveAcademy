@@ -9,9 +9,18 @@ const { Item } = ListGroup;
 const { Header, Subtitle, Body, Title } = Card;
 
 class Campus extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      id: '',
+    };
+  }
   componentDidMount() {
     const campusId = this.props.match.params.campusId;
     this.props.fetchCampus(campusId);
+    this.setState({
+      id: campusId,
+    });
   }
   render() {
     const { fontStyle, spacing, linkStyle } = customStyles;
@@ -59,7 +68,7 @@ class Campus extends React.Component {
           <Col>
             <Card>
               <Header>Update Campus</Header>
-              <UpdateCampus />
+              <UpdateCampus id={this.state.id} />
             </Card>
           </Col>
         </Row>
