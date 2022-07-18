@@ -39,7 +39,7 @@ class AddCampus extends React.Component {
 
     return (
       <Form
-        className="w-50 bg-dark text-white"
+        className=" bg-dark text-white"
         style={{ padding: '0.5rem' }}
         onSubmit={handleSubmit}
       >

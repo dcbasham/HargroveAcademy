@@ -13,7 +13,6 @@ campusRouter.get('/', async (req, res, next) => {
 
 campusRouter.get('/:campusId', async (req, res, next) => {
   try {
-    // eslint-disable-next-line radix
     const id = parseInt(req.params.campusId);
     const campusAndStudents = await Campus.findByPk(id, {
       include: { model: Student },

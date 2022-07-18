@@ -33,7 +33,6 @@ export const createStudent = (student) => {
   return async (dispatch) => {
     const { data: created } = await axios.post('/api/students', student);
     dispatch(addStudent(created));
-    // history.push('/');
   };
 };
 export const deleteStudent = (id) => async (dispatch) => {

@@ -24,8 +24,7 @@ export class AllCampuses extends React.Component {
   }
 
   render() {
-    const { history } = this.props;
-    const { linkStyle, spacing, labelStyle, fontStyle } = customStyles;
+    const { linkStyle, spacing } = customStyles;
     return (
       <Container fluid id="campuses">
         <Row style={spacing} lg="6" sm="3" className="g-md-1">
