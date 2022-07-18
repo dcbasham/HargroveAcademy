@@ -3,7 +3,6 @@ import { customStyles } from '../_customStyle';
 import { updateCampus } from '../redux/singleCampus';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
-// import { fetchSingleCampus } from '../redux/singleCampus';
 
 class UpdateCampus extends React.Component {
   constructor(props) {
