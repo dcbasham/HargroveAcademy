@@ -4,10 +4,11 @@ import { fetchCampuses, deleteCampus } from '../redux/campuses';
 import AddCampus from './AddCampus';
 import { Card, Col, Row, Form, Container, CloseButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { customStyles } from './Routes';
+import { customStyles } from '../_customStyle';
 
 // Notice that we're exporting the AllCampuses component twice. The named export
 // (below) is not connected to Redux, while the default export (at the very
+
 // bottom) is connected to Redux. Our tests should cover _both_ cases.
 export class AllCampuses extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ export class AllCampuses extends React.Component {
   }
 
   render() {
+    const { history } = this.props;
     const { linkStyle, spacing, labelStyle, fontStyle } = customStyles;
     return (
       <Container fluid id="campuses">
@@ -51,7 +53,7 @@ export class AllCampuses extends React.Component {
         </Row>
         <Row>
           <Col>
-            Add a campus here: <AddCampus labelStyle={labelStyle} />
+            Add a campus here: <AddCampus />
           </Col>
         </Row>
       </Container>
@@ -61,12 +63,10 @@ export class AllCampuses extends React.Component {
 const mapState = ({ campuses }) => ({
   campuses,
 });
-
 const mapDispatch = (dispatch) => {
   return {
     getCampuses: () => dispatch(fetchCampuses()),
     deleteCampus: (id) => dispatch(deleteCampus(id, history)),
   };
 };
-
 export default connect(mapState, mapDispatch)(AllCampuses);

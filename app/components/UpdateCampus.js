@@ -1,6 +1,6 @@
 import React from 'react';
-import { customStyles } from './Routes';
-import { updateCampus } from '../redux/singleCampus';
+import { customStyles } from '../_customStyle';
+import { updateCampus } from '../redux/campuses';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 
@@ -19,16 +19,32 @@ class UpdateCampus extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.updateCampus(this.props.id, { ...this.state });
+    this.props.updateCampus(this.props.campus, { ...this.state });
+    this.setState({
+      name: '',
+      address: '',
+      description: '',
+    });
   }
+
   handleChange(evt) {
+    console.log('evt.target.name', evt.target.name);
+    console.log('evt.target.value,', evt.target.value);
     this.setState({
       [evt.target.name]: evt.target.value,
     });
   }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.id !== this.props.campus.id) {
+  //     this.setState({
+  //       name: this.props.campus.name,
+  //       address: this.props.campus.address,
+  //     });
+  //   }
+  // }
   render() {
     const { labelStyle } = customStyles;
-
+    const { history } = this.props.history;
     const { Group, Label, Control } = Form;
     const { name, address, description } = this.state;
     return (
@@ -40,6 +56,7 @@ class UpdateCampus extends React.Component {
           <Control
             type="text"
             name="name"
+            placeholder="required"
             value={name}
             onChange={this.handleChange}
           />
@@ -51,6 +68,7 @@ class UpdateCampus extends React.Component {
           <Control
             type="text"
             name="address"
+            placeholder="required"
             value={address}
             onChange={this.handleChange}
           />
@@ -74,11 +92,11 @@ class UpdateCampus extends React.Component {
     );
   }
 }
-// const mapState = ({ singleCampus }) => ({
-//   singleCampus,
-// });
-const mapDispatch = (dispatch) => ({
-  updateCampus: (id, state) => dispatch(updateCampus(id, state)),
+const mapState = ({ campus }) => ({
+  campus,
+});
+const mapDispatch = (dispatch, { history }) => ({
+  updateCampus: (campus) => dispatch(updateCampus(campus, history)),
 });
 
-export default connect(null, mapDispatch)(UpdateCampus);
+export default connect(mapState, mapDispatch)(UpdateCampus);

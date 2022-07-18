@@ -1,10 +1,13 @@
 import axios from 'axios';
-
+const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 const SET_CAMPUSES = 'SET_CAMPUSES';
 const ADD_CAMPUS = 'ADD_CAMPUS';
 const DELETE_CAMPUS = 'DELETE_CAMPUS';
 /*  ACTION CREATORs */
-
+const _updateCampus = (campus) => ({
+  type: UPDATE_CAMPUS,
+  campus,
+});
 const setCampuses = (campuses) => ({
   type: SET_CAMPUSES,
   campuses,
@@ -26,11 +29,10 @@ export const fetchCampuses = () => async (dispatch) => {
     console.error(e.message);
   }
 };
-export const createCampus = (campus, history) => {
+export const createCampus = (campus) => {
   return async (dispatch) => {
     const { data: created } = await axios.post('/api/campuses', campus);
     dispatch(addCampus(created));
-    history.push('/');
   };
 };
 export const deleteCampus = (id) => {
@@ -40,6 +42,15 @@ export const deleteCampus = (id) => {
     dispatch(removedCampus(campus));
     // history.push('/');
   };
+};
+export const updateCampus = (campus) => async (dispatch) => {
+  try {
+    const { data } = await axios.put(`/api/campuses/${campus.id}`, campus);
+    console.log('data: campus form axios.put', campus);
+    dispatch(_updateCampus(data));
+  } catch (err) {
+    console.error(err.message);
+  }
 };
 
 // REDUCER (( Take a look at app/redux/index.js to see where this reducer is
@@ -52,6 +63,11 @@ export default function campusesReducer(state = [], action) {
       return [...state, action.campus];
     case DELETE_CAMPUS:
       return state.filter((campus) => campus.id !== action.campus.id);
+    case UPDATE_CAMPUS:
+      // eslint-disable-next-line no-confusing-arrow
+      return state.map((campus) =>
+        campus.id === action.campus.id ? action.campus : campus
+      );
 
     default:
       return state;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { customStyles } from './Routes';
+import { customStyles } from '../_customStyle';
 import { connect } from 'react-redux';
 import { fetchSingleCampus } from '../redux/singleCampus';
 import { Link } from 'react-router-dom';
@@ -9,23 +9,14 @@ const { Item } = ListGroup;
 const { Header, Subtitle, Body, Title } = Card;
 
 class Campus extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: 0,
-    };
-  }
   componentDidMount() {
     const campusId = this.props.match.params.campusId;
     this.props.fetchCampus(campusId);
-    this.setState({
-      id: campusId,
-    });
   }
   render() {
     const { fontStyle, spacing, linkStyle } = customStyles;
-
-    const campus = this.props.singleCampus;
+    const { Body, Header, Title, Subtitle, Footer } = Card;
+    const campus = this.props.campus;
     return (
       <Container fluid>
         <Row lg={2} sm={2}>
@@ -68,7 +59,7 @@ class Campus extends React.Component {
           <Col>
             <Card>
               <Header>Update Campus</Header>
-              <UpdateCampus id={this.state.id} />
+              <UpdateCampus />
             </Card>
           </Col>
         </Row>
@@ -76,9 +67,9 @@ class Campus extends React.Component {
     );
   }
 }
-const mapState = ({ singleCampus }) => {
+const mapState = ({ campus }) => {
   return {
-    singleCampus,
+    campus,
   };
 };
 

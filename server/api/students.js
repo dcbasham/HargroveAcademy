@@ -45,7 +45,7 @@ studentRouter.delete('/:id', async (req, res, next) => {
 });
 studentRouter.put('/:id', async (req, res, next) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id);
     const targetStudent = await Student.findByPk(id);
     if (!targetStudent) {
       res.status(404).send('No such student found');

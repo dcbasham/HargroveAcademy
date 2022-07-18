@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { fetchSingleStudent } from '../redux/singleStudent';
 import { Link } from 'react-router-dom';
 import { Card, Container, Row, Col } from 'react-bootstrap';
-import { customStyles } from './Routes';
+import { customStyles } from '../_customStyle';
 import UpdateStudent from './UpdateStudent';
 class Student extends React.Component {
   constructor() {
     super();
     this.state = {
-      id: 0,
+      id: '',
     };
   }
   componentDidMount() {
@@ -19,15 +19,16 @@ class Student extends React.Component {
       id: studentId,
     });
   }
+
   render() {
     const { Title, Header, Subtitle, Footer, Img } = Card;
     const { linkStyle, fontStyle, spacing } = customStyles;
-    const student = this.props.singleStudent;
+    const student = this.props.student;
     console.log('student', student);
 
     return (
       <Container fluid style={spacing}>
-        <Row lg={2} sm={2}>
+        <Row>
           <Col>
             <Card>
               <Header>Student</Header>
@@ -74,9 +75,9 @@ class Student extends React.Component {
     );
   }
 }
-const mapState = ({ singleStudent }) => {
+const mapState = ({ student }) => {
   return {
-    singleStudent,
+    student,
   };
 };
 const mapDispatch = (dispatch) => ({

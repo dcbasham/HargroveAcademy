@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStudents } from '../redux/students';
-import { deleteStudent } from '../redux/students';
+import { fetchStudents, deleteStudent } from '../redux/students';
+
 import { Link } from 'react-router-dom';
 import AddStudent from './AddStudent';
 import { Card, Container, Row, Col, CloseButton } from 'react-bootstrap';
-import { customStyles } from './Routes';
+import { customStyles } from '../_customStyle';
 
 // Notice that we're exporting the AllStudents component twice. The named export
 // (below) is not connected to Redux, while the default export (at the very

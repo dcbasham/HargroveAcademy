@@ -1,8 +1,9 @@
 import React from 'react';
-import { customStyles } from './Routes';
-import { updateStudent } from '../redux/singleStudent';
+import { customStyles } from '../_customStyle';
+import { updateStudent } from '../redux/students';
 import { connect } from 'react-redux';
 import { Form, Button, FormControl } from 'react-bootstrap';
+import { fetchSingleStudent } from '../redux/singleStudent';
 
 class UpdateStudent extends React.Component {
   constructor(props) {
@@ -16,10 +17,20 @@ class UpdateStudent extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.state) {
+      console.log('prevProps vs this.state', prevProps, this.state);
+      this.props.fetchStudent(this.props.id);
+    }
+  }
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.updateStudent(this.props.id, { ...this.state });
+    this.setState({
+      firstName: '',
+      lastName: '',
+      email: '',
+    });
   }
   handleChange(evt) {
     this.setState({
@@ -73,11 +84,12 @@ class UpdateStudent extends React.Component {
     );
   }
 }
-const mapState = ({ singleStudent }) => ({
-  singleStudent,
+const mapState = ({ student }) => ({
+  student,
 });
 const mapDispatch = (dispatch) => ({
   updateStudent: (id, state) => dispatch(updateStudent(id, state)),
+  fetchStudent: (id) => dispatch(fetchSingleStudent(id)),
 });
 
 export default connect(mapState, mapDispatch)(UpdateStudent);
