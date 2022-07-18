@@ -1,9 +1,9 @@
 import React from 'react';
 import { customStyles } from '../_customStyle';
-import { updateCampus } from '../redux/campuses';
+import { updateCampus } from '../redux/singleCampus';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
-import { fetchSingleCampus } from '../redux/singleCampus';
+// import { fetchSingleCampus } from '../redux/singleCampus';
 
 class UpdateCampus extends React.Component {
   constructor(props) {
@@ -17,12 +17,7 @@ class UpdateCampus extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.state) {
-      console.log('prevProps vs this.state', prevProps, this.state);
-      this.props.fetchCampus(this.props.id);
-    }
-  }
+
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.updateCampus(this.props.id, { ...this.state });
@@ -39,7 +34,6 @@ class UpdateCampus extends React.Component {
     });
   }
 
-  // }
   render() {
     const { labelStyle } = customStyles;
 
@@ -95,7 +89,6 @@ const mapState = ({ campus }) => ({
 });
 const mapDispatch = (dispatch) => ({
   updateCampus: (id, state) => dispatch(updateCampus(id, state)),
-  fetchCampus: (id) => dispatch(fetchSingleCampus(id)),
 });
 
 export default connect(mapState, mapDispatch)(UpdateCampus);

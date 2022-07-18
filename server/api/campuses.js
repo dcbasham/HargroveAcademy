@@ -7,7 +7,6 @@ campusRouter.get('/', async (req, res, next) => {
     const campuses = await Campus.findAll();
     res.json(campuses);
   } catch (e) {
-    console.error(e);
     next(e);
   }
 });
@@ -21,7 +20,6 @@ campusRouter.get('/:campusId', async (req, res, next) => {
     });
     res.json(campusAndStudents);
   } catch (e) {
-    console.error(e);
     next(e);
   }
 });
@@ -41,22 +39,28 @@ campusRouter.delete('/:id', async (req, res, next) => {
     await targetCampus.destroy();
     res.send(targetCampus);
   } catch (err) {
-    console.log(err.message);
     next(err);
   }
 });
 campusRouter.put('/:id', async (req, res, next) => {
   try {
-    const id = parseInt(req.params.id);
-    const target = await Campus.findByPk(id);
-    if (!target) {
-      return res.status(404).json({ error: 'No such campus exists' });
-    } else {
-      const updatedTarget = target.update(req.body);
-      res.json(updatedTarget);
-    }
+    await Campus.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    const campus = await Campus.findByPk(req.params.id);
+    res.send(campus);
   } catch (err) {
     next(err);
+  }
+});
+campusRouter.use((err, req, res, next) => {
+  try {
+    console.log(err.message);
+    res.status(err.status).send(err.message);
+  } catch (e) {
+    next(e);
   }
 });
 

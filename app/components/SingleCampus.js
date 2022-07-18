@@ -24,7 +24,7 @@ class Campus extends React.Component {
   }
   render() {
     const { fontStyle, spacing, linkStyle } = customStyles;
-    const { Body, Header, Title, Subtitle, Footer } = Card;
+
     const campus = this.props.campus;
     return (
       <Container fluid>

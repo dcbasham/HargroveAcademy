@@ -50,8 +50,6 @@ export class AllCampuses extends React.Component {
               </Card>
             </Col>
           ))}
-        </Row>
-        <Row>
           <Col>
             Add a campus here: <AddCampus />
           </Col>

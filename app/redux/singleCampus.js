@@ -1,16 +1,21 @@
 import axios from 'axios';
 
-const GOT_CAMPUS = 'GOT_CAMPUS';
+export const SET_CAMPUS = 'SET_CAMPUS';
 
-export const gotCampus = (campus) => ({
-  type: GOT_CAMPUS,
+export const setCampus = (campus) => ({
+  type: SET_CAMPUS,
   campus,
 });
+
+export const updateCampus = (id, campus) => async (dispatch) => {
+  const { data } = await axios.put(`/api/campuses/${id}`, campus);
+  dispatch(setCampus(data));
+};
 
 export const fetchSingleCampus = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/campuses/${id}`);
-    dispatch(gotCampus(data));
+    dispatch(setCampus(data));
   } catch (e) {
     console.error(e);
   }
@@ -18,7 +23,7 @@ export const fetchSingleCampus = (id) => async (dispatch) => {
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case GOT_CAMPUS:
+    case SET_CAMPUS:
       return action.campus;
 
     default:
