@@ -1,10 +1,10 @@
 ## Rubric
 
-| Score | Meaning                     |
-| ----- | --------------------------- |
-| 0     | Critera not met             |
-| 1     | Criteria met inconsistently |
-| 2     | Criteria met consistently   |
+### Final Grade: 95%
+
+#### To view Final Grade and Rubric:
+
+[view PDF](https://drive.google.com/file/d/1-YfYpmJGYGrCHtwnjL5nWCE7_D_t-12Z/view?usp=sharing)
 
 ### Frontend (6/24)
 
@@ -54,20 +54,26 @@ _Comments from your instructor or fellow will go here_
 - Rubric score (24 points total, weighted at 30% of total grade)
 - Extra credit (23 points total, for an additional 15% max)
 
-- RAW REQUIREMENT SCORE: __
-- RAW RUBRIC SCORE: __
-- RAW EC SCORE: __
-- DEDUCTIONS: __
+- RAW REQUIREMENT SCORE: \_\_
+- RAW RUBRIC SCORE: \_\_
+- RAW EC SCORE: \_\_
+- DEDUCTIONS: \_\_
 
-- TOTAL: __
+- TOTAL: \_\_
 
 ```javascript
-const getTotal = (rawRequirementScore, rawRubricScore, rawExtraCredit, deductions) => {
-  const totalRequirementScore = ((rawRequirementScore/61) * 100) * 0.7
-  const totalRubricScore = ((rawRubricScore/24) * 100) * 0.3
-  const totalExtraCredit = ((rawExtraCredit/23) * 100) * 0.1
+const getTotal = (
+  rawRequirementScore,
+  rawRubricScore,
+  rawExtraCredit,
+  deductions
+) => {
+  const totalRequirementScore = (rawRequirementScore / 61) * 100 * 0.7;
+  const totalRubricScore = (rawRubricScore / 24) * 100 * 0.3;
+  const totalExtraCredit = (rawExtraCredit / 23) * 100 * 0.1;
 
-  const total = totalRequirementScore + totalRubricScore + totalExtraCredit - deductions
-  return total
-}
+  const total =
+    totalRequirementScore + totalRubricScore + totalExtraCredit - deductions;
+  return total;
+};
 ```
