@@ -17,12 +17,7 @@ class UpdateStudent extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.state) {
-      console.log('prevProps vs this.state', prevProps, this.state);
-      this.props.fetchStudent(this.props.id);
-    }
-  }
+
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.updateStudent(this.props.id, { ...this.state });

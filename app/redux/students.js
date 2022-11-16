@@ -29,11 +29,13 @@ export const fetchStudents = () => async (dispatch) => {
     console.error(e);
   }
 };
-export const createStudent = (student) => {
-  return async (dispatch) => {
+export const createStudent = (student) => async (dispatch) => {
+  try {
     const { data: created } = await axios.post('/api/students', student);
     dispatch(addStudent(created));
-  };
+  } catch (err) {
+    console.error(err.message);
+  }
 };
 export const deleteStudent = (id) => async (dispatch) => {
   try {
