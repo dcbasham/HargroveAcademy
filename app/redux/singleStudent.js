@@ -1,10 +1,10 @@
 /* eslint-disable-next-line no-confusing-arrow*/
 import axios from 'axios';
 
-const GOT_STUDENT = 'GOT_STUDENT';
+const SET_STUDENT = 'SET_STUDENT';
 
-export const gotStudent = (student) => ({
-  type: GOT_STUDENT,
+export const setStudent = (student) => ({
+  type: SET_STUDENT,
   student,
 });
 
@@ -12,7 +12,7 @@ export const fetchSingleStudent = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/students/${id}`);
 
-    dispatch(gotStudent(data));
+    dispatch(setStudent(data));
   } catch (e) {
     console.error(e);
   }
@@ -20,7 +20,7 @@ export const fetchSingleStudent = (id) => async (dispatch) => {
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case GOT_STUDENT:
+    case SET_STUDENT:
       return action.student;
 
     default:

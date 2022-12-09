@@ -34,7 +34,7 @@ export const createStudent = (student) => async (dispatch) => {
     const { data: created } = await axios.post('/api/students', student);
     dispatch(addStudent(created));
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
   }
 };
 export const deleteStudent = (id) => async (dispatch) => {
@@ -48,7 +48,6 @@ export const deleteStudent = (id) => async (dispatch) => {
 export const updateStudent = (id, student) => async (dispatch) => {
   try {
     const { data } = await axios.put(`/api/students/${id}`, student);
-    console.log('data from axios.put for student', data);
     dispatch(_updateStudent(data));
   } catch (err) {
     console.log(err.message);

@@ -29,7 +29,7 @@ const Student = db.define('student', {
   imageUrl: {
     type: STRING,
     defaultValue:
-      'https://cdn-ejfid.nitrocdn.com/HahWXuLfKZbQhJjlzjiUHtqlxVqcJYyP/assets/static/optimized/rev-0cc4069/wp-content/uploads/2020/12/topic-faculty-active-engaged-students-1.png',
+      'https://www.byui.edu/images/Research-Creative-Works-Conference/Student_Icon.png',
   },
   gpa: {
     type: DECIMAL(2, 1),

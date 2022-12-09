@@ -26,6 +26,7 @@ class UpdateStudent extends React.Component {
       lastName: '',
       email: '',
     });
+    return this.state.student;
   }
   handleChange(evt) {
     this.setState({
@@ -33,49 +34,55 @@ class UpdateStudent extends React.Component {
     });
   }
   render() {
-    const { labelStyle, spacing } = customStyles;
-
-    const { Group, Label, Control } = Form;
+    const { labelStyle } = customStyles;
     const { firstName, lastName, email } = this.state;
     return (
-      <Form style={spacing} onSubmit={this.handleSubmit}>
-        <Group>
-          <Label style={labelStyle} htmlFor="firstName">
+      <form onSubmit={this.handleSubmit}>
+        <div className="form-group">
+          <label style={labelStyle} htmlFor="firstName">
             First Name:
-          </Label>
-          <Control
+          </label>
+          <input
             type="text"
             name="firstName"
+            aria-placeholder="Alphabetical characters only"
             value={firstName}
             onChange={this.handleChange}
+            pattern="[A-Za-z]+$"
+            title="Alphabetical characters"
           />
-        </Group>
-        <Group>
-          <Label style={labelStyle} htmlFor="lastName">
+        </div>
+        <div className="form-group">
+          <label style={labelStyle} htmlFor="lastName">
             Last Name:
-          </Label>
-          <Control
+          </label>
+          <input
             type="text"
             name="lastName"
             value={lastName}
             onChange={this.handleChange}
+            aria-placeholder="Alphabetical characters only"
+            pattern="[A-Za-z]+$"
+            title="Alphabetical characters"
           />
-        </Group>
-        <Group>
-          <Label style={labelStyle} htmlFor="email">
+        </div>
+        <div className="form-group">
+          <label style={labelStyle} htmlFor="email">
             email :
-          </Label>
-          <FormControl
-            type="text"
+          </label>
+          <input
+            type="email"
             name="email"
             value={email}
             onChange={this.handleChange}
+            aria-placeholder="Valid email address"
+            title='Valid email address containing "@" and ".com"'
           />
-        </Group>
+        </div>
         <Button style={labelStyle} variant="outline-success" type="submit">
           Update
         </Button>
-      </Form>
+      </form>
     );
   }
 }

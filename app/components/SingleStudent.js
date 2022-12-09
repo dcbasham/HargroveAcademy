@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { customStyles } from '../_customStyle';
 import UpdateStudent from './UpdateStudent';
+// called from AllstudentsCard - refactor to Student file
 class Student extends React.Component {
   constructor() {
     super();
