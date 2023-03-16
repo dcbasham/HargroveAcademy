@@ -1,9 +1,9 @@
 import React from 'react';
 import { customStyles } from '../_customStyle';
-import { updateStudent } from '../redux/students';
+import { updateStudent } from '../redux/singleStudent';
 import { connect } from 'react-redux';
 import { Form, Button, FormControl } from 'react-bootstrap';
-import { fetchSingleStudent } from '../redux/singleStudent';
+// import { fetchStudents } from '../redux/students';
 
 class UpdateStudent extends React.Component {
   constructor(props) {
@@ -26,7 +26,6 @@ class UpdateStudent extends React.Component {
       lastName: '',
       email: '',
     });
-    return this.state.student;
   }
   handleChange(evt) {
     this.setState({
@@ -48,7 +47,7 @@ class UpdateStudent extends React.Component {
             aria-placeholder="Alphabetical characters only"
             value={firstName}
             onChange={this.handleChange}
-            pattern="[A-Za-z]+$"
+            pattern="[A-Za-z_]+$"
             title="Alphabetical characters"
           />
         </div>
@@ -59,10 +58,11 @@ class UpdateStudent extends React.Component {
           <input
             type="text"
             name="lastName"
+            id="lastName"
             value={lastName}
             onChange={this.handleChange}
             aria-placeholder="Alphabetical characters only"
-            pattern="[A-Za-z]+$"
+            pattern="[A-Za-z_]+$"
             title="Alphabetical characters"
           />
         </div>
@@ -91,7 +91,6 @@ const mapState = ({ student }) => ({
 });
 const mapDispatch = (dispatch) => ({
   updateStudent: (id, state) => dispatch(updateStudent(id, state)),
-  fetchStudent: (id) => dispatch(fetchSingleStudent(id)),
 });
 
 export default connect(mapState, mapDispatch)(UpdateStudent);

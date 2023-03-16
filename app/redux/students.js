@@ -64,9 +64,9 @@ export default function studentsReducer(state = [], action) {
     case DELETE_STUDENT:
       return state.filter((student) => student.id !== action.student.id);
     case UPDATE_STUDENT:
-      return state.map((student) => {
-        return student.id === action.student.id ? action.student : student;
-      });
+      return state.map((student) =>
+        student.id === action.student.id ? action.student : state.students
+      );
     default:
       return state;
   }
