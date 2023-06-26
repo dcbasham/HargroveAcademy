@@ -57,6 +57,7 @@ class UpdateStudent extends React.Component {
           <input
             type="text"
             name="lastName"
+            id="lastName"
             value={lastName}
             onChange={this.handleChange}
             placeholder="Alphabetical characters"
@@ -93,7 +94,6 @@ const mapState = ({ student }) => ({
 });
 const mapDispatch = (dispatch) => ({
   updateStudent: (id, state) => dispatch(updateStudent(id, state)),
-  fetchStudent: (id) => dispatch(fetchSingleStudent(id)),
 });
 
 export default connect(mapState, mapDispatch)(UpdateStudent);

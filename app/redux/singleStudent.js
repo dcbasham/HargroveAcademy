@@ -7,17 +7,14 @@ export const setStudent = (student) => ({
   type: SET_STUDENT,
   student,
 });
-
-export const fetchSingleStudent = (id) => async (dispatch) => {
-  try {
-    const { data } = await axios.get(`/api/students/${id}`);
-
-    dispatch(setStudent(data));
-  } catch (e) {
-    console.error(e);
-  }
+export const updateStudent = (id, student) => async (dispatch) => {
+  const { data } = await axios.put(`/api/students/${id}`, student);
+  dispatch(setStudent(data));
 };
-
+export const getStudent = (id) => async (dispatch) => {
+  const { data } = await axios.get(`api/students/${id}`);
+  dispatch(setStudent(data));
+};
 export default (state = {}, action) => {
   switch (action.type) {
     case SET_STUDENT:

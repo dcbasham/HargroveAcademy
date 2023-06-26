@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchSingleStudent } from '../redux/singleStudent';
+import { getStudent } from '../redux/singleStudent';
 import { Link } from 'react-router-dom';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { customStyles } from '../_customStyle';
@@ -81,7 +81,7 @@ const mapState = ({ student }) => {
   };
 };
 const mapDispatch = (dispatch) => ({
-  fetchStudent: (id) => dispatch(fetchSingleStudent(id)),
+  fetchStudent: (id) => dispatch(getStudent(id)),
 });
 
 export default connect(mapState, mapDispatch)(Student);
