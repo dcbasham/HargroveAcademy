@@ -1,7 +1,22 @@
-.form-label {
+/* .form-label {
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
 }
 button.btn.btn-success {
   margin-top: 0.5rem;
+} */
+input {
+  width: 100%;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+input:valid {
+  border: 1px solid green;
+}
+input:invalid {
+  border: 1px solid red;
+  box-shadow: inset;
+}
+.field:invalid {
+  border: 1px solid red;
 }
